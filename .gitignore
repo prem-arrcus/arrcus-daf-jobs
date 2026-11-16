@@ -1,0 +1,7 @@
+.env/
+jenkins.conf
+jenkins-job-definitions.generated.yaml
+__pycache__/
+allure-results/
+.ruff_cache/
+AGENTS.md

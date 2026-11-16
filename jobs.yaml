@@ -1,0 +1,36 @@
+# List of Jenkins jobs, one entry per job, with information that is
+# unique to each job.
+#
+# Required fields:
+#   name          - name of the Jenkins job
+#   report_email  - email address of the user to whom the report is sent
+#
+# Optional fields:
+#   daf_branch    - git branch of the arrcus-daf repo (default: main)
+#   yang_branch   - yang models branch; when set, --yang-branch
+#                   <yang_branch> is added to the pytest command line
+#                   (optional; defaults to the pytest/daf default)
+#   extra_args    - default extra arguments appended to the pytest
+#                   command line (optional; the DAF Pipeline always
+#                   overrides it with the pipeline's own extra_args)
+#   topo_file     - default topology file (--topo-file for pytest);
+#                   (optional; defaults to daf/tests/<script>/topo.yaml,
+#                   overridden by the pipeline's own topo_file when the
+#                   DAF Pipeline specifies one)
+#   vpp           - default state of the vpp build parameter (boolean,
+#                   optional; adds --vpp to the pytest command line when
+#                   enabled; inherited by the DAF Pipeline when its own
+#                   vpp parameter is enabled)
+#   script        - pytest script to run; if not specified, the job
+#                   defaults to daf/tests/<job name>/run_tests.py
+#   post_script   - post-processing script to run after the test script
+#   auth_token    - token to trigger the job remotely
+#                   (https://<jenkins>/job/<name>/buildWithParameters?token=<token>);
+#                   defaults to the job name
+#   label         - node label expression that restricts where the job
+#                   can run (optional; defaults to "daf")
+
+jobs:
+  - name: multicast
+    daf_branch: main
+    report_email: prem@arrcus.com

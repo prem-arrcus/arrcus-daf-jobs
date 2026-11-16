@@ -1,0 +1,55 @@
+# Jenkins executor node definitions.
+#
+# Pushed with: ./manage_jobs.sh push-nodes
+# (uses the Jenkins server config from jenkins.conf / --conf)
+#
+# Fields per node:
+#   name           - (required) name of the Jenkins executor node
+#   num_executors  - number of executors on the node (default: 1)
+#   labels         - space separated list of node labels (optional)
+#   exclusive      - true to tie the node to jobs that explicitly ask for
+#                    its label (EXCLUSIVE mode); default: false (NORMAL)
+#   remote_dir     - (required for ssh launcher) remote agent working
+#                    directory on the node
+#   description    - node description (optional)
+#   launcher       - node launch method:
+#       type: ssh
+#         host            - (required) host name / IP of the node
+#         port            - ssh port (default: 22)
+#         credentials_id  - (required) SSH credential id for the node
+#         jvm_options     - JVM options for the agent (optional)
+#       type: jnlp
+#         (no additional fields; the agent connects back to Jenkins)
+#
+# Example (uncomment and edit):
+#
+# nodes:
+#   - name: daf-node-01
+#     description: DAF test executor node 1
+#     num_executors: 4
+#     labels: daf vpp
+#     remote_dir: /home/daf/jenkins
+#     launcher:
+#       type: ssh
+#       host: 10.0.0.10
+#       port: 22
+#       credentials_id: daf-node-ssh-key
+#
+#   - name: intake-node-01
+#     description: JNLP intake node
+#     num_executors: 1
+#     labels: intake
+#     launcher:
+#       type: jnlp
+
+nodes:
+  - name: sj-perf-01
+    description: DAF test executor perf-01
+    num_executors: 1
+    labels: daf perf
+    remote_dir: /var/cache/jenkins/
+    launcher:
+      type: ssh
+      host: 10.27.107.3
+      credentials_id: daf-perf01-ssh-key
+
